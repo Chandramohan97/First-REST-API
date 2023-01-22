@@ -1,17 +1,18 @@
+const express = require("express");
 const app = require("express")();
-require("dotenv").config();
-const subscriberRouter = require("./router/subscriber");
+// require("dotenv").config();
+const subscriberRouter = require("./router/subscribers");
 const port = process.env.port || 8080;
-const mongoose = require("mongoose");
+// const bodyparser = require("body-parser");
+// app.use(bodyparser.urlencoded({ extended: false }));
 
+const mongoose = require("mongoose");
+require("dotenv").config();
 mongoose.set("strictQuery", true);
 mongoose.connect(process.env.DATABASE_URL);
 
-// const db = mongoose.connections;
-// console.log(db);
-
 app.get("/", (req, res) => {
-  res.send("Hello");
+  res.json("Hello");
 });
 
 app.use("/subscriber", subscriberRouter);
